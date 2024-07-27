@@ -1,0 +1,5 @@
+<div class="example-input">
+    <input placeholder="Search notes" nz-input [(ngModel)]="inputValue" (input)="onInput($event)"
+        [nzAutocomplete]="auto" />
+    <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>
+</div>

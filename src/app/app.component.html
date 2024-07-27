@@ -1,1 +1,12 @@
-<list-component/>
+<nz-layout>
+    <nz-header><search-component /></nz-header>
+
+    <nz-content>
+        <modal-component [isVisible]="isNewNoteVisible"/>
+        <list-component />
+    </nz-content>
+
+    <nz-footer>
+        <button nz-button [nzType]="'primary'" (click)="showNewNote()"><span>New note</span></button>
+    </nz-footer>
+</nz-layout>

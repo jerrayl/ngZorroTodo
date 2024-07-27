@@ -1,0 +1,24 @@
+<form nz-form [formGroup]="form" (ngSubmit)="submitForm()">
+  <nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <div *nzModalTitle (click)="toggleEditTitle(true)">
+      @if (isEditingTitle){
+      <nz-form-item>
+        <nz-form-control>
+          <input appAutofocus nz-input formControlName="title" placeholder="Title" (blur)="toggleEditTitle(false)" />
+        </nz-form-control>
+      </nz-form-item>
+      }
+      @else {
+      {{form.value.title ? form.value.title : 'New note'}}
+      }
+    </div>
+
+    <ng-container *nzModalContent>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Please write something here!">
+          <textarea formControlName="description" nz-input rows="2" placeholder="Description"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </ng-container>
+  </nz-modal>
+</form>
