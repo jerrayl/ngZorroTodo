@@ -1,17 +1,15 @@
-<div style="margin-bottom: 8px;"><button nz-button (click)="load()">Load Data</button></div>
- 
-<nz-list nzItemLayout="horizontal" [nzLoading]="loading">
-  @for (item of data; track item) {
+<nz-list nzItemLayout="horizontal" [nzLoading]="todoService.todosLoading">
+  @for (item of todoService.todos.items; track item) {
   <nz-list-item>
     <nz-list-item-meta 
-      [nzDescription]="item.description">
+      [nzDescription]="item.content">
       <nz-list-item-meta-title>
         <a href="https://ng.ant.design">{{ item.title }}</a>
       </nz-list-item-meta-title>
     </nz-list-item-meta>
   </nz-list-item>
   }
-  @if (data.length === 0) {
+  @if (todoService.todos.items.length === 0) {
   <nz-list-empty />
   }
 </nz-list>

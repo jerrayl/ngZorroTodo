@@ -1,0 +1,17 @@
+@if(!todoService.todos){
+  <div nz-flex nzJustify="center" nzGap="middle" nzWrap="wrap">
+    <ng-container *ngFor="let _ of [].constructor(8)">
+      <nz-card [style.width.%]="20" [nzLoading]="true"/>
+    </ng-container>
+  </div>
+}
+@else{
+  @if (todoService.todos.items.length === 0) {
+    <nz-empty nzNotFoundImage="simple" />
+  }
+  <div nz-flex nzGap="middle" nzWrap="wrap">
+    @for (item of todoService.todos.items; track item) {
+      <card-component [title]="item.title" [content]="item.content" />
+    }
+  </div>
+}

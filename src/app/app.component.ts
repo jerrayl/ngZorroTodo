@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzButtonComponent } from 'ng-zorro-antd/button';
-import { ListComponent } from './components/list/list.component';
 import { SearchComponent } from './components/search/search.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { CardContainerComponent } from './components/card/cardcontainer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NzButtonComponent, NzLayoutModule, ListComponent, SearchComponent, ModalComponent],
+  imports: [RouterOutlet, NzButtonComponent, NzLayoutModule, CardContainerComponent, SearchComponent, ModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
@@ -21,13 +21,7 @@ export class AppComponent {
     this.isNewNoteVisible = true;
   }
 
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isNewNoteVisible = false;
-  }
-
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
+  closeNewNoteModal(): void {
     this.isNewNoteVisible = false;
   }
 }

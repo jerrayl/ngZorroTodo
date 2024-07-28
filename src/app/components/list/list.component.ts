@@ -1,10 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NzListModule } from 'ng-zorro-antd/list';
-
-type ListData = {
-  title: string,
-  description: string;
-}
+import { TodoService } from '../../stores/todo.service';
 
 @Component({
   selector: 'list-component',
@@ -13,15 +9,5 @@ type ListData = {
   standalone: true
 })
 export class ListComponent {
-  loading = false;
-  data: ListData[] = [];
-
-  load(): void {
-    this.data = Array.from({ length: 5 }, (_, i) => 
-      ({
-        title: `Title ${i}`,
-        description: "Description"
-      })
-    );
-  }
+  todoService = inject(TodoService);
 }

@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { AutofocusDirective } from '../../directives/autofocus.directive';
+import { TodoService } from '../../stores/todo.service';
 
 @Component({
   selector: 'modal-component',
@@ -12,7 +13,10 @@ import { AutofocusDirective } from '../../directives/autofocus.directive';
 })
 export class ModalComponent {
   @Input() isVisible = false;
+  @Output() closeModal = new EventEmitter<void>();
   isEditingTitle = false;
+
+  todoService = inject(TodoService);
 
   form: FormGroup<{
     title: FormControl<string>;
@@ -27,19 +31,17 @@ export class ModalComponent {
   }
 
   toggleEditTitle(value: boolean): void {
-    console.log("triggered");
     this.isEditingTitle = value;
   }
 
   handleOk(): void {
-    console.log('Doing nothing!');
+    if (this.form.valid){
+      this.todoService.createTodo(this.form.value.title!, this.form.value.description!);
+      this.closeModal.emit();
+    }
   }
 
   handleCancel(): void {
-    console.log('Doing nothing clicked!');
-  }
-
-  submitForm(): void {
-    console.log('submit', this.form.value);
+    this.closeModal.emit();
   }
 }

@@ -2,8 +2,8 @@
     <nz-header><search-component /></nz-header>
 
     <nz-content>
-        <modal-component [isVisible]="isNewNoteVisible"/>
-        <list-component />
+        <modal-component [isVisible]="isNewNoteVisible" (closeModal)="closeNewNoteModal()"/>
+        <cardcontainer-component />
     </nz-content>
 
     <nz-footer>
