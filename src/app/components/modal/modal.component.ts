@@ -2,13 +2,14 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { AutofocusDirective } from '../../directives/autofocus.directive';
 import { TodoService } from '../../stores/todo.service';
 
 @Component({
   selector: 'modal-component',
   templateUrl: './modal.component.html',
-  imports: [NzModalModule, ReactiveFormsModule, NzFormModule, AutofocusDirective],
+  imports: [NzModalModule, ReactiveFormsModule, NzFormModule, NzInputModule, AutofocusDirective],
   standalone: true
 })
 export class ModalComponent {

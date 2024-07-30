@@ -3,8 +3,9 @@
     <div *nzModalTitle (click)="toggleEditTitle(true)">
       @if (isEditingTitle){
       <nz-form-item>
-        <nz-form-control>
-          <input appAutofocus nz-input formControlName="title" placeholder="Title" (blur)="toggleEditTitle(false)" />
+        <nz-form-control class="title">
+          <input appAutofocus nz-input nzBorderless [style.width.%]="90" formControlName="title" placeholder="Title"
+            (blur)="toggleEditTitle(false)" />
         </nz-form-control>
       </nz-form-item>
       }
@@ -15,8 +16,9 @@
 
     <ng-container *nzModalContent>
       <nz-form-item>
-        <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Please write something here!">
-          <textarea formControlName="description" nz-input rows="2" placeholder="Description"></textarea>
+        <nz-form-control>
+          <textarea nz-input nzBorderless [style.width.%]="100" rows="4" nzAutosize="{ minRows: 4, maxRows: 10 }"
+            formControlName="description" placeholder="Description"></textarea>
         </nz-form-control>
       </nz-form-item>
     </ng-container>

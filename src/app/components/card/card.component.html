@@ -1,6 +1,3 @@
-<nz-card [nzTitle]="title" [nzExtra]="extraTemplate">
+<nz-card nzHoverable [nzTitle]="title" [style.border-radius.px]="5" [style.width.px]="150">
   <p>{{content}}</p>
 </nz-card>
-<ng-template #extraTemplate>
-  <a>More</a>
-</ng-template>

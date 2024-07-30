@@ -5,11 +5,12 @@ import { NzButtonComponent } from 'ng-zorro-antd/button';
 import { SearchComponent } from './components/search/search.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CardContainerComponent } from './components/card/cardcontainer.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NzButtonComponent, NzLayoutModule, CardContainerComponent, SearchComponent, ModalComponent],
+  imports: [RouterOutlet, NzButtonComponent, NzLayoutModule, NzIconModule, CardContainerComponent, SearchComponent, ModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

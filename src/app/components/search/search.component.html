@@ -1,5 +1,8 @@
 <div class="example-input">
-    <input placeholder="Search notes" nz-input [(ngModel)]="inputValue" (input)="onInput($event)"
-        [nzAutocomplete]="auto" />
-    <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input placeholder="Search notes" nz-input [(ngModel)]="todoService.searchValue" (input)="onInput($event)" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+        <span nz-icon nzType="search"></span>
+    </ng-template>
 </div>

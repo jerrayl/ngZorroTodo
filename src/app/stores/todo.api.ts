@@ -17,7 +17,7 @@ export const login = async () => {
 export const getTodos = async (searchValue?: string): Promise<Page<Todo>> => {
   return await pb.collection('todos').getList(1, 50, {
     sort: '-updated',
-    filter: searchValue && `title ~ ${searchValue} || content ~ ${searchValue}`
+    filter: searchValue && `title ~ "${searchValue}" || content ~ "${searchValue}"`
   }) as unknown as Page<Todo>
 };
 

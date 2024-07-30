@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal, WritableSignal } from '@angular/core';
 import { Page, Todo } from '../models/todo.model';
 import { createTodo, getTodos, login } from './todo.api';
 
@@ -6,16 +6,24 @@ import { createTodo, getTodos, login } from './todo.api';
   providedIn: 'root',
 })
 export class TodoService {
-  searchValue = '';
-  todos: Page<Todo> | null = null;
+  searchValue = signal('');
+  todos: WritableSignal<Page<Todo> | null> = signal(null);
 
-  constructor(){
+  filteredTodos = computed(() =>
+    this.todos()?.items.filter(x =>
+      x.title.toLowerCase().includes(this.searchValue()) ||
+      x.content.toLowerCase().includes(this.searchValue())
+    ) ?? []
+  );
+
+  constructor() {
     login().then(() => this.loadTodos());
   }
 
   loadTodos = async () => {
-    const todos = await getTodos(this.searchValue);
-    this.todos = todos;
+    this.todos.set(null);
+    const todos = await getTodos(this.searchValue());
+    this.todos.set(todos);
   }
 
   createTodo = async (title: string, content: string) => {

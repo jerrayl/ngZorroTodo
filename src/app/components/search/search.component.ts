@@ -1,21 +1,22 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { TodoService } from '../../stores/todo.service';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'search-component',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './search.component.html',
-  imports: [FormsModule, NzInputModule, NzAutocompleteModule],
+  imports: [FormsModule, NzInputModule, NzIconModule],
   standalone: true
 })
 export class SearchComponent {
-    inputValue?: string;
-    options: string[] = [];
-  
-    onInput(event: Event): void {
-      const value = (event.target as HTMLInputElement).value;
-      this.options = value ? [value, value + value, value + value + value] : [];
-    }
+  todoService = inject(TodoService);
+
+  options = computed(() => this.todoService.todos()?.items.map(x => x.title) ?? []);
+
+  onInput(event: Event): void {
+    this.todoService.searchValue.set((event.target as HTMLInputElement).value);
+  }
 }
